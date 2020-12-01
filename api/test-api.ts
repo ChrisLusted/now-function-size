@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import getScreenshot from "../../screenshot";
+import getScreenshot from "../screenshot";
 
 export default async (_req: NextApiRequest, res: NextApiResponse) => {
   const file = await getScreenshot("https://apple.com");
