@@ -10,7 +10,7 @@ const LOCAL_CHROME_PATH =
     ? "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"
     : "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
 
-export default async () => {
+export default async (url: string) => {
   const type = "png";
 
   const puppeteerOptions = isProd
@@ -28,7 +28,7 @@ export default async () => {
   const browser = await puppeteer.launch(puppeteerOptions);
 
   const page = await browser.newPage();
-  await page.goto("https://apple.com");
+  await page.goto(url);
   const file = await page.screenshot({ type });
   // create pdf from the resulting screenshot
   const pdf = await page.pdf({
@@ -42,9 +42,9 @@ export default async () => {
   });
   // await browser.close();
 
-  const url =
+  const pdfUrl =
     "https://raw.githubusercontent.com/Hopding/pdf-lib/master/assets/pdfs/examples/create_document.pdf";
-  const arrayBuffer = await fetch(url).then((res) => res.arrayBuffer());
+  const arrayBuffer = await fetch(pdfUrl).then((res) => res.arrayBuffer());
   const designDoc = await PDFDocument.load(arrayBuffer);
   const topLayerPDF = await PDFDocument.load(pdf);
 
