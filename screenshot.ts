@@ -1,5 +1,4 @@
 import chrome from "chrome-aws-lambda";
-import puppeteer from "puppeteer-core";
 import { PDFDocument } from "pdf-lib";
 import fetch from "isomorphic-unfetch";
 
@@ -25,7 +24,9 @@ export default async (url: string) => {
         headless: true,
       };
 
-  const browser = await puppeteer.launch(puppeteerOptions);
+  console.log("isProd", isProd);
+  console.log("puppeteerOptions", puppeteerOptions);
+  const browser = await chrome.puppeteer.launch(puppeteerOptions);
 
   const page = await browser.newPage();
   await page.goto(url);
