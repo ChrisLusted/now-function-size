@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "routes": [
+    {
+      "src": "/pages/api/*",
+      "dest": "/api/$1",
+      "methods": [
+        "GET"
+      ]
+    }
+  ]
+}
